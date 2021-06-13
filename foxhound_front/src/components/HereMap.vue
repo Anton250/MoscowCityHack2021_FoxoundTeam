@@ -9,6 +9,7 @@
 </template>
 
 <script>
+const H = window.H;
 export default {
   name: "HereMap",
   props: {
@@ -20,6 +21,25 @@ export default {
       apikey: "78bhiTliLYkKcCMilhXup8uJVRnoWcMvJaVJbFNOWrA",
       map: null,
       ui: null,
+      heatmap: new H.data.heatmap.Provider({
+        colors: new H.data.heatmap.Colors(
+          {
+            0: "#0f007d",
+            0.1: "#51007d",
+            0.2: "#8002a3",
+            0.3: "#b642f5",
+            0.4: "#a30275",
+            0.5: "#b3125d",
+            0.6: "#cc8706",
+            0.7: "#cca106",
+            0.8: "#ccb206",
+            0.9: "#ccbc06",
+            1: "#ffff00",
+          },
+          true
+        ),
+        opacity: 1,
+      }),
     };
   },
   watch: {
@@ -32,7 +52,6 @@ export default {
         this.$store.commit("setLineObj", null);
       }
       if (this.newLine.points.length >= 2) {
-        const H = window.H;
         var lineString = new H.geo.LineString();
         for (let point of this.newLine.points) {
           lineString.pushPoint({ lat: point.lat, lng: point.lng });
@@ -44,6 +63,9 @@ export default {
           )
         );
       }
+    },
+    heatMapData() {
+      this.createHeatMap(this.heatMapData);
     },
   },
   async mounted() {
@@ -63,6 +85,7 @@ export default {
       };
     },
     items() {
+      if (!this.$store.state.showObjects) return [];
       let items = [...this.$store.state.items];
       return items.sort((a, b) => {
         if (a.size >= b.size) {
@@ -72,13 +95,16 @@ export default {
         }
       });
     },
+    heatMapData() {
+      if (!this.$store.state.showHeatMap) return [];
+      return this.$store.state.heatMapData;
+    },
   },
   methods: {
     initializeHereMap() {
       // rendering map
 
       const mapContainer = this.$refs.hereMap;
-      const H = window.H;
       // Obtain the default map types from the platform object
       var maptypes = this.platform.createDefaultLayers();
 
@@ -120,9 +146,13 @@ export default {
       // End rendering the initial map
 
       this.map = map;
+      map.addLayer(new H.map.layer.TileLayer(this.heatmap));
+    },
+    createHeatMap(data) {
+      this.heatmap.clear();
+      this.heatmap.addData(data, true);
     },
     addItems() {
-      const H = window.H;
       this.map.removeObjects(this.map.getObjects());
       let t = this;
       for (let [index, item] of this.items.entries()) {

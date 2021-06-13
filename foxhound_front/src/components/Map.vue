@@ -3,7 +3,7 @@
     <b-overlay :show="$store.state.loading" rounded="sm">
       <b-container>
         <b-row>
-          <b-col>
+          <b-col cols='3'>
             <b-form-checkbox
               v-model="redactorMode"
               size="lg"
@@ -13,6 +13,26 @@
             >
               <p v-if="redactorMode">Режим редактирования</p>
               <p v-else>Режим просмотра</p>
+            </b-form-checkbox>
+          </b-col>
+          <b-col cols='3'>
+            <b-form-checkbox
+              v-model="showHeatMap"
+              size="sm"
+              name="check-button"
+              switch
+            >
+              <p v-if="!showHeatMap">Показать тепловую карту</p>
+              <p v-else>Скрыть тепловую карту</p>
+            </b-form-checkbox>
+            <b-form-checkbox
+              v-model="showObjects"
+              size="sm"
+              name="check-button"
+              switch
+            >
+              <p v-if="!showObjects">Показать объекты</p>
+              <p v-else>Скрыть объекты</p>
             </b-form-checkbox>
           </b-col>
           <b-col>
@@ -148,7 +168,8 @@ export default {
       this.center.lng = this.$route.query.lng;
     }
     // get data
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await this.$store.dispatch('getItems');
+    await this.$store.dispatch('getHeatMap');
     this.$store.commit("setLoading", false);
   },
   mounted() {
@@ -195,6 +216,14 @@ export default {
       this.$store.commit(
         "setDeleteMode",
         this.$route.query.mode == "3" ? true : false
+      );
+      this.$store.commit(
+        "setShowHeatMap",
+        this.$route.query.showHeatMap == "1" ? true : false
+      );
+      this.$store.commit(
+        "setShowObjects",
+        this.$route.query.showObjects == "1" ? true : false
       );
     },
     keyupHandler(event) {
@@ -283,6 +312,28 @@ export default {
         this.$router.replace({
           name: this.$route.name,
           query: { ...this.$route.query, mode: value ? 3 : 0 },
+        });
+      },
+    },
+    showHeatMap: {
+      get() {
+        return this.$store.state.showHeatMap;
+      },
+      set(value) {
+        this.$router.replace({
+          name: this.$route.name,
+          query: { ...this.$route.query, showHeatMap: value ? 1 : 0 },
+        });
+      },
+    },
+    showObjects: {
+      get() {
+        return this.$store.state.showObjects;
+      },
+      set(value) {
+        this.$router.replace({
+          name: this.$route.name,
+          query: { ...this.$route.query, showObjects: value ? 1 : 0 },
         });
       },
     },

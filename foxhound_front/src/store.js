@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 // import http from './http'
 import Axios from 'axios'
 import Vue from 'vue'
+import http from './http'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,9 @@ const store = new Vuex.Store({
         items: [],
         deleteMode: false,
         loading: true,
+        showHeatMap: false,
+        showObjects: true,
+        heatMapData: [],
     },
     mutations: {
         setUser(state, user) {
@@ -66,9 +70,26 @@ const store = new Vuex.Store({
         },
         setLoading(state, loading) {
             state.loading = loading;
+        },
+        setHeatMapData(state, data) {
+            state.heatMapData = data
+        },
+        setShowHeatMap(state, value) {
+            state.showHeatMap = value;
+        },
+        setShowObjects(state, value) {
+            state.showObjects = value;
         }
     },
     actions: {
+        async getItems(context) {
+            let data = (await http.getList('Items')).data;
+            context.commit('setItems', data);
+        },
+        async getHeatMap(context) {
+            let data = (await http.getList('HeatMap')).data;
+            context.commit('setHeatMapData', data);
+        },
         async login(context, creds) {
             var username = creds.username;
             var password = creds.password;
