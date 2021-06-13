@@ -25,6 +25,7 @@ const store = new Vuex.Store({
         showHeatMap: false,
         showObjects: true,
         heatMapData: [],
+        category: null,
     },
     mutations: {
         setUser(state, user) {
@@ -79,15 +80,18 @@ const store = new Vuex.Store({
         },
         setShowObjects(state, value) {
             state.showObjects = value;
+        },
+        setCategory(state, category) {
+            state.category = category;
         }
     },
     actions: {
-        async getItems(context) {
-            let data = (await http.getList('Items', {}, true)).data;
+        async getItems(context, filter = {}) {
+            let data = (await http.getList('Items', filter, true)).data;
             context.commit('setItems', data);
         },
-        async getHeatMap(context) {
-            let data = (await http.getList('HeatMap', {}, true)).data;
+        async getHeatMap(context, filter = {}) {
+            let data = (await http.getList('HeatMap', filter, true)).data;
             context.commit('setHeatMapData', data);
         },
         async login(context, creds) {

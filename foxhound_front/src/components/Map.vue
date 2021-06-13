@@ -2,6 +2,9 @@
   <div>
     <b-overlay :show="$store.state.loading" rounded="sm">
       <b-container>
+        <b-row class="text-center">
+          <b-col><h3>Категория бизнеса - {{categoryMapper[this.$store.state.category]}}</h3></b-col>
+        </b-row>
         <b-row>
           <b-col cols="3">
             <b-form-checkbox
@@ -155,6 +158,10 @@ export default {
         lng: 37.62506377774014,
       },
       loading: true,
+      categoryMapper: {
+        food: "Фуд ритейл",
+        bar: "Рестораны, кафе, бары и ночные клубы",
+      },
     };
   },
   watch: {
@@ -168,9 +175,22 @@ export default {
       this.center.lng = this.$route.query.lng;
     }
     // get data
-    // await this.$store.dispatch('getItems');
-    // await this.$store.dispatch('getHeatMap');
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    if (
+      this.$store.state.items.length == 0 &&
+      this.$store.state.heatMapData.length == 0
+    ) {
+      if (!this.$route.query.category) {
+        this.$router.replace({ name: "Home" });
+        return;
+      }
+      this.$store.commit("setCategory", this.$route.query.category);
+      await this.$store.dispatch("getItems", {
+        category: this.$store.state.category,
+      });
+      await this.$store.dispatch("getHeatMap", {
+        category: this.$store.state.category,
+      });
+    }
     this.$store.commit("setLoading", false);
   },
   mounted() {

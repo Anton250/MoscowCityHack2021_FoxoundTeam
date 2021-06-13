@@ -23,7 +23,7 @@
           <b-form-group>
             <b-form-checkbox>Запомнить меня</b-form-checkbox>
           </b-form-group>
-          <b-button variant="primary" block>Войти</b-button>
+          <b-button @click='login' variant="primary" block>Войти</b-button>
         </b-card>
       </b-col>
     </b-row>

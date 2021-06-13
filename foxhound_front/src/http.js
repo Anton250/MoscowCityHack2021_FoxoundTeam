@@ -3,8 +3,8 @@ import Vue from 'vue';
 
 export default {
     urls: {
-        Items: '/api/items',
-        HeatMap: '/heatmap',
+        Items: '/api/items/',
+        HeatMap: '/api/heatmap/',
     },
     getFilterValues: async function (filters) {
         var filter = "";

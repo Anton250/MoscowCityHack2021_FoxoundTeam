@@ -11,7 +11,7 @@ let opts = {
       component: () => import('../components/Params.vue'),
       name: "Home",
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -19,7 +19,7 @@ let opts = {
       name: "map",
       component: () => import('../components/Map.vue'),
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {

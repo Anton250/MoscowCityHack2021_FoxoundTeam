@@ -8,9 +8,9 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item to="/">На главную</b-nav-item>
-            <b-nav-item to="/team">О команде</b-nav-item>
-            <b-nav-item to="/algo">Об алгоритме</b-nav-item>
+            <b-nav-item v-if="$store.state.isAuthenticated" to="/">На главную</b-nav-item>
+            <!-- <b-nav-item to="/team">О команде</b-nav-item>
+            <b-nav-item to="/algo">Об алгоритме</b-nav-item> -->
             <b-link
               to="/login"
               class="btn btn-outline-primary ml-5"

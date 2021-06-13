@@ -4,10 +4,12 @@
     <transition name='fade' mode="out-in">
       <router-view />
     </transition>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Footer from './components/Footer.vue';
 import Nav from "./components/Nav";
 import ErrorModal from "./plugins/ErrorModal";
 
@@ -15,6 +17,7 @@ export default {
   name: "app",
   components: {
     Nav,
+    Footer,
   },
   beforeMount() {
     ErrorModal.ErrorEvent.$on("show", (params) => {

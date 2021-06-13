@@ -27,3 +27,4 @@ package-lock.json
 __pycache__
 mounts
 vue.config.js
+env

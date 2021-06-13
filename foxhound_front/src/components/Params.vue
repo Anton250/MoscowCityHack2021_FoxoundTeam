@@ -14,6 +14,7 @@
             value="code"
             class="mb-2"
             :selectable="(option) => option.selectable"
+            :reduce="v => v.code"
           ></v-select>
         </b-form-group>
         <b-form-group>
@@ -60,6 +61,7 @@ export default {
         {
           name: "Фуд ритейл",
           code: "food",
+          selectable: true,
         },
         {
           name: "Парикмахерские, салоны красоты и т.п.",
@@ -83,14 +85,24 @@ export default {
           code: "sales",
         },
       ],
-      category: null,
     };
   },
   components: { TheMask, vSelect },
   methods: {
-    confirm() {
-      // do some backend actions
-      this.$router.replace({ name: "map" });
+    async confirm() {
+      await this.$store.dispatch("getItems", { category: this.category });
+      await this.$store.dispatch("getHeatMap", { category: this.category });
+      this.$router.replace({ name: "map", query: { category: this.category } });
+    },
+  },
+  computed: {
+    category: {
+      get() {
+        return this.$store.state.category;
+      },
+      set(value) {
+        this.$store.commit("setCategory", value);
+      },
     },
   },
 };
