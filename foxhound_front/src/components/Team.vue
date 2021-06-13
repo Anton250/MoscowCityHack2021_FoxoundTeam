@@ -53,20 +53,20 @@ export default {
         {
           fio: "Антон Недогарок",
           university: "МГТУ им. Н.Э. Баумана",
-          info: "Матмоделирование, авиатранспорт, разработка ПО",
+          info: "Матмоделирование, разработка ПО",
           avatar: require("../assets/AntonN.jpg"),
           univAvatar: require("../assets/bauman.png"),
         },
         {
           fio: "Антон Петров",
           university: "Московский политех",
-          info: "Бекенд-, фронтенд-разработка, информационная безопасность",
+          info: "Full Stack разработка",
           avatar: require("../assets/AntonP.jpg"),
           univAvatar: require("../assets/polytech.png"),
         },
         {
           fio: "Вячеслав Солдатов",
-          university: "НИЯУ МИФИ, СберТех",
+          university: "НИЯУ МИФИ, Glowbyte",
           info: "Бекенд-разработка",
           avatar: require("../assets/Slava.jpg"),
           univAvatar: require("../assets/miphi.png"),
@@ -74,7 +74,7 @@ export default {
         {
           fio: "Кирилл Семенников",
           university: "Московский политех",
-          info: "Мобильная разработка, информационная безопасность",
+          info: "Мобильная разработка, бэкенд-разработка, матмоделирование",
           avatar: require("../assets/Kirill.jpg"),
           univAvatar: require("../assets/polytech.png"),
         },
