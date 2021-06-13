@@ -6,9 +6,7 @@ FROM python:${PYTHON_VERSION} as python
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
-  # git+https
   python3-dev \
-  libgraphviz-dev \
   pkg-config
 
 COPY ./FoxhoundApp/install.sh .
@@ -16,6 +14,11 @@ RUN chmod +x /install.sh
 
 # Create Python Dependency
 RUN ./install.sh
+
+RUN apt-get remove -y build-essential \
+  python3-dev \
+  pkg-config && apt-get autoremove -y && apt-get purge -y
+
 
 ARG BUILD_ENVIRONMENT=production
 ARG APP_HOME=/webapp

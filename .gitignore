@@ -26,3 +26,4 @@ package-lock.json
 .uwsgi.env
 __pycache__
 mounts
+vue.config.js

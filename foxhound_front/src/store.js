@@ -83,11 +83,11 @@ const store = new Vuex.Store({
     },
     actions: {
         async getItems(context) {
-            let data = (await http.getList('Items')).data;
+            let data = (await http.getList('Items', {}, true)).data;
             context.commit('setItems', data);
         },
         async getHeatMap(context) {
-            let data = (await http.getList('HeatMap')).data;
+            let data = (await http.getList('HeatMap', {}, true)).data;
             context.commit('setHeatMapData', data);
         },
         async login(context, creds) {

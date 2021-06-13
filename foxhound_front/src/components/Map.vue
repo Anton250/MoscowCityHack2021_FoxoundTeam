@@ -3,7 +3,7 @@
     <b-overlay :show="$store.state.loading" rounded="sm">
       <b-container>
         <b-row>
-          <b-col cols='3'>
+          <b-col cols="3">
             <b-form-checkbox
               v-model="redactorMode"
               size="lg"
@@ -15,7 +15,7 @@
               <p v-else>Режим просмотра</p>
             </b-form-checkbox>
           </b-col>
-          <b-col cols='3'>
+          <b-col cols="3">
             <b-form-checkbox
               v-model="showHeatMap"
               size="sm"
@@ -168,8 +168,9 @@ export default {
       this.center.lng = this.$route.query.lng;
     }
     // get data
-    await this.$store.dispatch('getItems');
-    await this.$store.dispatch('getHeatMap');
+    // await this.$store.dispatch('getItems');
+    // await this.$store.dispatch('getHeatMap');
+    await new Promise(resolve => setTimeout(resolve, 2000));
     this.$store.commit("setLoading", false);
   },
   mounted() {
@@ -253,11 +254,7 @@ export default {
       let animation = { opacity: 0 };
       if (window.innerWidth >= 576) animation.maxWidth = 0;
       else animation.maxHeight = 0;
-      Velocity(
-        el,
-        animation,
-        { duration: "normal", complete: done }
-      );
+      Velocity(el, animation, { duration: "normal", complete: done });
     },
   },
   computed: {
