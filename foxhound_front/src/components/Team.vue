@@ -67,7 +67,7 @@ export default {
         {
           fio: "Вячеслав Солдатов",
           university: "НИЯУ МИФИ, Glowbyte",
-          info: "Бекенд-разработка",
+          info: "Бекенд-разработка, матмоделирование",
           avatar: require("../assets/Slava.jpg"),
           univAvatar: require("../assets/miphi.png"),
         },
