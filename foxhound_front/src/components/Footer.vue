@@ -10,7 +10,7 @@
         <b-nav vertical>
           <li class="nav-item"><a href="/static/foxhound.apk" download target="_self" class="nav-link">Скачать приложение</a></li>
           <b-nav-item to="/team">О команде</b-nav-item>
-          <b-nav-item to="/algo">Об алгоритме</b-nav-item>
+          <!-- <b-nav-item to="/algo">Об алгоритме</b-nav-item> -->
         </b-nav>
       </b-col>
       <b-col lg="2"></b-col>
