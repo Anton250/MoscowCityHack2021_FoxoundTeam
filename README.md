@@ -6,6 +6,8 @@
 
 `FoxhoundApp` - веб-приложение, прототип, отображающий рекомендации для двух категорий бизнеса (фуд-ритейл и бары/кафе/рестораны) на цветовой карте
 
+`MobileApp` - мобильный клиент для веб-приложения, разработанный в QML.
+
 ## Развертывание через docker-compose
 1. Установить [docker](https://docs.docker.com/engine/install/ubuntu/)
 2. Установить [docker-compose](https://docs.docker.com/compose/install/)
