@@ -36,7 +36,8 @@ export default {
           },
           true
         ),
-        opacity: 1,
+        opacity: 0.7,
+        type: "value"
       }),
     };
   },

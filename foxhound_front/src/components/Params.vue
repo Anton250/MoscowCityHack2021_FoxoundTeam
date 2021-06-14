@@ -92,7 +92,7 @@ export default {
     async confirm() {
       await this.$store.dispatch("getItems", { category: this.category });
       await this.$store.dispatch("getHeatMap", { category: this.category });
-      this.$router.replace({ name: "map", query: { category: this.category } });
+      this.$router.replace({ name: "map", query: { category: this.category, showHeatMap: 1 } });
     },
   },
   computed: {

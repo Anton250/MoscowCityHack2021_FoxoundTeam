@@ -133,6 +133,7 @@
             </b-col>
           </transition>
           <b-col><HereMap :center="center" /></b-col>
+          <b-col cols='1' style="background: linear-gradient(#f0f922, #fdc52a, #f89540, #e56b5c, #cb4779, #a82396, #7c07a6, #4d03a0, #0d0b86)"></b-col>
         </b-row>
       </b-container>
       <ModalEditPoint @addCircle="addCircle" />

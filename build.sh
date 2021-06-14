@@ -12,3 +12,5 @@ build nginx
 build frontend
 
 docker-compose -f ./compose/docker-compose.yml up --no-deps --force-recreate --remove-orphans -d web frontend nginx
+
+cp foxhound.apk ./compose/mounts/static/
