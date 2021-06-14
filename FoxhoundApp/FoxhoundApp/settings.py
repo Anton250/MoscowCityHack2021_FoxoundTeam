@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_filters',
+    'rest_auth',
+    'rest_framework.authtoken',
+    'FoxhoundApp.TrafficApp',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +74,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FoxhoundApp.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'FoxhoundApp.authentication.FoxhoundSessionAuthentication',
+    ],
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -118,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/webapp/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
